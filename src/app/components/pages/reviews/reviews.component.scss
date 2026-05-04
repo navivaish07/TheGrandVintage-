@@ -1,0 +1,23 @@
+.reviews-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.review-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  max-width: 500px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.stars {
+  color: #ff9800;
+  font-size: 1.2rem;
+}
+
+.feedback {
+  font-style: italic;
+  margin-top: 0.5rem;
+}

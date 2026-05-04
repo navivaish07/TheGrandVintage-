@@ -1,12 +1,30 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, FormsModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'grand-vintage';
+  showAuthModal = true;
+
+  links = [
+    { title: 'Home', link: '/' },
+    { title: 'Menu', link: '/menu' },
+    { title: 'About', link: '/about' },
+    { title: 'Contact', link: '/contact' }
+  ];
+
+  openAuthModal() {
+    this.showAuthModal = true;
+  }
+
+  closeAuthModal(success: boolean) {
+    this.showAuthModal = false;
+  }
 }

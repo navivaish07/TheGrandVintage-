@@ -1,0 +1,13 @@
+<div class="menu-container">
+  <h1>Our Royal Menu</h1>
+  <p class="subtitle">Discover the rich taste of The Grand Vintage ✨</p>
+
+  <div class="menu-grid">
+    <div class="menu-card" *ngFor="let category of categories">
+      <h2>{{ category.name }}</h2>
+      <ul>
+        <li *ngFor="let item of category.items">{{ item }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
