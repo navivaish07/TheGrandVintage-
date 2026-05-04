@@ -1,0 +1,38 @@
+<div class="home-container">
+  <div *ngIf="!isAdmin" class="page-panel home-hero-panel">
+    <div class="home-hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Premium Vintage Dining</span>
+        <h1>{{ title }}</h1>
+        <p>{{ subtitle }}</p>
+        <div class="hero-actions">
+          <button class="hero-button" routerLink="/menu">Explore Menu</button>
+          <button class="secondary-button" routerLink="/reservations">Reserve Table</button>
+        </div>
+      </div>
+
+      <div class="hero-preview">
+        <div class="preview-card">
+          <img [src]="heroImages[0].src" [alt]="heroImages[0].alt" />
+        </div>
+        <div class="preview-card">
+          <img [src]="heroImages[1].src" [alt]="heroImages[1].alt" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isAdmin" class="page-panel highlight-panel">
+    <div class="highlight-card" *ngFor="let btn of navButtons">
+      <h3>{{ btn.label }}</h3>
+      <p>Discover elegant {{ btn.label.toLowerCase() }} experiences crafted for every guest.</p>
+      <button class="secondary-button" [routerLink]="btn.route">View {{ btn.label }}</button>
+    </div>
+  </div>
+
+  <div *ngIf="isAdmin" class="admin-redirect">
+    <h2>Welcome to Admin Dashboard</h2>
+    <p>You are logged in as an administrator. Click below to access the admin panel.</p>
+    <button class="btn-royal" (click)="goToAdminPanel()">Go to Admin Panel</button>
+  </div>
+</div>

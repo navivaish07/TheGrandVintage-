@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+:root {
+  --bg-hero: #080b18;
+  --bg-panel: rgba(15, 18, 35, 0.92);
+  --text: #f7f2e9;
+  --text-muted: #b2a68b;
+  --gold: #d4af37;
+  --gold-soft: #c7a55c;
+  --border: rgba(212, 175, 55, 0.18);
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background-color: #05080f;
+  background-image:
+    linear-gradient(180deg, rgba(6, 8, 18, 0.90), rgba(10, 13, 28, 0.95)),
+    url('/assets/images/backgrounds/background.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.container {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+.page-panel {
+  background: rgba(16, 20, 38, 0.88);
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  padding: 32px;
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 2.5vw, 3.5rem);
+  color: var(--text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.subtle-text {
+  color: var(--text-muted);
+}

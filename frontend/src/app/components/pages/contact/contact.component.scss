@@ -1,0 +1,145 @@
+.contact-container {
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  padding: 3rem 1rem 4rem;
+}
+
+.contact-panel {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2rem;
+  background: rgba(16, 20, 38, 0.96);
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  padding: 3rem;
+  box-shadow: var(--shadow);
+}
+
+.contact-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  justify-content: space-between;
+}
+
+.contact-copy .eyebrow,
+.contact-copy .eyebrow {
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.contact-panel h1 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 3vw, 3.5rem);
+  color: var(--text);
+}
+
+.contact-panel p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.contact-form-wrap {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+.contact-panel form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.contact-panel label {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.contact-panel input,
+.contact-panel textarea {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  outline: none;
+}
+
+.contact-panel input:focus,
+.contact-panel textarea:focus {
+  border-color: rgba(212, 175, 55, 0.32);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.06);
+}
+
+.contact-panel textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.contact-panel button {
+  width: fit-content;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.contact-panel button:hover {
+  transform: translateY(-1px);
+}
+
+.contact-info-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-radius: 26px;
+  padding: 2rem;
+  display: grid;
+  gap: 1rem;
+  color: var(--text-muted);
+}
+
+.contact-info-card h3 {
+  margin: 0;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+}
+
+.contact-info-card p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.contact-info-card h3 {
+  margin: 0;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+}
+
+.contact-info-card p,
+.contact-info-card strong {
+  margin: 0;
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+  .contact-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-copy {
+    order: 1;
+  }
+
+  .contact-form-wrap {
+    order: 2;
+  }
+}

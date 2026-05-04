@@ -1,0 +1,24 @@
+<div class="menu-container">
+  <div class="menu-header">
+    <div>
+      <h1>Our Royal Menu</h1>
+      <p class="subtitle">Discover the rich taste of The Grand Vintage ✨</p>
+    </div>
+  </div>
+
+  <div class="menu-grid">
+    <div class="menu-card" *ngFor="let category of categories">
+      <h2>{{ category.name }}</h2>
+      <ul>
+        <li *ngFor="let item of category.items">
+          <img [src]="item.image" [alt]="item.name" class="menu-image">
+          <div class="menu-item-details">
+            <strong>{{ item.name }}</strong>
+            <p>{{ item.description }}</p>
+            <span class="price">${{ item.price }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

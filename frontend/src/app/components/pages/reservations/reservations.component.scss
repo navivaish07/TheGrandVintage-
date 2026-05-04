@@ -1,0 +1,506 @@
+.reservations-container {
+  max-width: 960px;
+  margin: 0 auto 4rem;
+  padding: 3rem 1rem 4rem;
+  position: relative;
+}
+
+.reservations-panel {
+  background: rgba(16, 21, 42, 0.92);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+  padding: 3rem;
+}
+
+.reservations-panel::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.reservations-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 4vw, 3.6rem);
+  margin: 0 0 0.75rem;
+  color: var(--text);
+}
+
+.reservations-hero .subtitle {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+}
+
+.reservation-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.reservation-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.reservation-form .form-group label {
+  display: block;
+  margin-bottom: 0.85rem;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.reservation-form input,
+.reservation-form select,
+.reservation-form textarea {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  outline: none;
+  font-weight: 500;
+}
+
+.reservation-form input::placeholder,
+.reservation-form select::placeholder,
+.reservation-form textarea::placeholder {
+  color: rgba(178, 166, 139, 0.7);
+}
+
+.reservation-form select option {
+  background: rgba(10, 13, 28, 0.95);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.reservation-form input:focus,
+.reservation-form select:focus,
+.reservation-form textarea:focus {
+  border-color: rgba(212, 175, 55, 0.48);
+  box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.1), inset 0 0px 4px rgba(212, 175, 55, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.reservation-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.reservation-form .split-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.type-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.85rem;
+}
+
+.type-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.type-options input {
+  accent-color: var(--gold);
+}
+
+.type-options input:checked + span,
+.type-options input:checked {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.type-options label:hover {
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.reservation-type-panel {
+  margin-bottom: 2rem;
+}
+
+.reservation-type-panel h3 {
+  margin: 0 0 0.75rem;
+  color: var(--gold);
+  font-size: 1.85rem;
+}
+
+.reservation-type-panel p {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.reservation-type-panel .type-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.pricing-details {
+  margin-top: 1.25rem;
+  padding: 1rem 1.2rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  border: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.pricing-details strong {
+  color: var(--gold);
+}
+
+.payment-step {
+  margin-top: 2rem;
+  background: rgba(18, 24, 47, 0.95);
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-radius: 28px;
+  padding: 2rem;
+}
+
+.payment-step h3 {
+  margin: 0 0 1rem;
+  color: var(--gold);
+}
+
+.payment-summary {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+.payment-status {
+  margin: 0 0 1.25rem;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.payment-btn {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 215, 128, 1) 0%, rgba(212, 175, 55, 1) 100%);
+  color: #0a0d1c;
+  padding: 1.1rem 2.4rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.24);
+  min-width: 220px;
+}
+
+.payment-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.32);
+}
+
+.payment-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.payment-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cancel-btn {
+  border: 1.5px solid rgba(212, 175, 55, 0.32);
+  background: transparent;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 1rem 2.2rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.cancel-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: rgba(212, 175, 55, 0.12);
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.cancel-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.cancel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.availability-panel {
+  margin-top: 2.5rem;
+  background: rgba(16, 20, 38, 0.94);
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-radius: 28px;
+  padding: 2.25rem;
+}
+
+.availability-panel h3 {
+  margin: 0 0 0.75rem;
+  color: var(--gold);
+  font-size: 1.9rem;
+}
+
+.availability-note {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.availability-group {
+  margin-bottom: 1.75rem;
+}
+
+.availability-group h4 {
+  margin: 0 0 1rem;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+.availability-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.availability-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.availability-card h5 {
+  margin: 0 0 0.5rem;
+  color: var(--gold);
+}
+
+.availability-card p {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.status {
+  display: inline-flex;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.status.available {
+  background: rgba(72, 169, 110, 0.16);
+  color: #b8f1c3;
+}
+
+.status.limited {
+  background: rgba(212, 175, 55, 0.16);
+  color: var(--gold);
+}
+
+.payment-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.16);
+}
+
+.payment-panel p {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 58%;
+  line-height: 1.75;
+}
+
+.signin-note {
+  margin: 1rem 0 0;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.login-prompt {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.login-prompt p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.submit-btn {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 215, 128, 1) 0%, rgba(212, 175, 55, 1) 100%);
+  color: #0a0d1c;
+  padding: 1.1rem 2.4rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.24);
+  width: 100%;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.32);
+}
+
+.submit-btn:active {
+  transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+}
+
+.confirmation-panel {
+  position: relative !important;
+  transform: none !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 9999 !important;
+  max-width: 520px !important;
+  width: 90vw !important;
+  background: linear-gradient(135deg, rgba(16, 21, 42, 0.98) 0%, rgba(20, 28, 50, 0.96) 100%) !important;
+  border: 2px solid rgba(212, 175, 55, 0.35) !important;
+  border-radius: 32px !important;
+  padding: 3rem 2.5rem !important;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(212, 175, 55, 0.15) !important;
+  backdrop-filter: blur(20px) !important;
+  margin: auto !important;
+  animation: slideIn 0.3s ease-out;
+  fixed: false !important;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.confirmation-panel .close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(212, 175, 55, 0.16);
+  border: 1px solid rgba(212, 175, 55, 0.24);
+  color: var(--gold);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 300;
+  transition: all 0.25s ease;
+  padding: 0;
+}
+
+.confirmation-panel .close-btn:hover {
+  background: rgba(212, 175, 55, 0.24);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: rotate(90deg);
+}
+
+.confirmation-panel::before {
+  display: none;
+}
+
+.confirmation-panel h3 {
+  margin: 0 0 1.25rem !important;
+  color: var(--gold) !important;
+  font-size: 1.85rem !important;
+  text-align: center !important;
+}
+
+.confirmation-panel .payment-summary {
+  text-align: center !important;
+  margin: 0.75rem 0 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.8 !important;
+}
+
+.confirmation-panel .submit-btn {
+  margin-top: 2rem !important;
+  width: 100% !important;
+}
+
+@media (max-width: 860px) {
+  .reservation-form .split-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .payment-panel p {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .reservations-panel {
+    padding: 2rem;
+  }
+}

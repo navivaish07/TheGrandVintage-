@@ -1,0 +1,32 @@
+<div class="contact-container">
+  <div class="page-panel contact-panel">
+    <div class="contact-copy">
+      <span class="eyebrow">Contact</span>
+      <h1 class="section-heading">{{ title }}</h1>
+      <p>Send us a message and we’ll help you reserve a special table, plan your event, or answer any question.</p>
+
+      <div class="contact-info-card">
+        <h3>Contact Information</h3>
+        <p><strong>Address:</strong> 123 Vintage Street, Grand City, GC 12345</p>
+        <p><strong>Phone:</strong> (555) 123-4567</p>
+        <p><strong>Email:</strong> info&#64;grandvintage.com</p>
+        <p><strong>Hours:</strong> Mon-Sun: 11AM - 11PM</p>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap">
+      <form (ngSubmit)="submitForm()">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="contact.name" name="name" required>
+
+        <label>Email</label>
+        <input type="email" [(ngModel)]="contact.email" name="email" required>
+
+        <label>Message</label>
+        <textarea [(ngModel)]="contact.message" name="message" required></textarea>
+
+        <button type="submit" class="btn-royal">Send Message</button>
+      </form>
+    </div>
+  </div>
+</div>

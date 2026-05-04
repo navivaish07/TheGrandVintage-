@@ -1,0 +1,51 @@
+<div class="reviews-container">
+  <div class="reviews-hero page-panel">
+    <h2>What Our Customers Say</h2>
+    <p>Elegant dining impressions from guests who love our vintage hospitality.</p>
+  </div>
+
+  <div *ngIf="isAuthenticated" class="review-form-container page-panel">
+    <h3>Share Your Experience</h3>
+    <form (ngSubmit)="submitReview()" #reviewForm="ngForm">
+      <div class="form-group">
+        <label for="reviewerName">Your Name:</label>
+        <input type="text" id="reviewerName" [(ngModel)]="newReview.name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Rating:</label>
+        <div class="rating-stars">
+          <span *ngFor="let star of [1,2,3,4,5]; let i = index"
+                (click)="setRating(i+1)"
+                [class.active]="newReview.rating >= i+1">⭐</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reviewFeedback">Your Feedback:</label>
+        <textarea id="reviewFeedback" [(ngModel)]="newReview.feedback" name="feedback"
+                  placeholder="Tell us about your experience..." required></textarea>
+      </div>
+
+      <button type="submit" [disabled]="!reviewForm.form.valid">Submit Review</button>
+    </form>
+  </div>
+
+  <div *ngIf="!isAuthenticated" class="login-prompt page-panel">
+    <div class="login-prompt-copy">
+      <h3>Share Your Experience</h3>
+      <p>Please sign in to leave a review and join our elegant community.</p>
+    </div>
+    <button class="btn-review-signin" (click)="openAuthModal()">Sign In / Sign Up</button>
+  </div>
+
+  <div class="reviews-list page-panel">
+    <div class="review-card" *ngFor="let r of reviews">
+      <h3>{{ r.name }}</h3>
+      <p class="stars">
+        <span *ngFor="let star of [].constructor(r.rating)">⭐</span>
+      </p>
+      <p class="feedback">"{{ r.feedback }}"</p>
+    </div>
+  </div>
+</div>

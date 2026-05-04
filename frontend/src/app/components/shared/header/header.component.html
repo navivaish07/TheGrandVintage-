@@ -1,0 +1,25 @@
+<header class="site-header">
+  <div class="container">
+    <div class="brand">
+      <img src="assets/images/indian-dishes.jpeg" alt="Grand Vintage Logo" class="logo">
+      <span>The Grand Vintage</span>
+    </div>
+
+    <nav>
+      <a routerLink="/home">Home</a>
+      <a routerLink="/menu">Menu</a>
+      <a routerLink="/about">About</a>
+      <a routerLink="/reviews">Reviews</a>
+      <a routerLink="/contact">Contact</a>
+
+      <!-- Show Sign In / Sign Up button if not authenticated -->
+      <button *ngIf="!isAuthenticated" class="btn-royal" (click)="openAuth.emit()">Sign In / Sign Up</button>
+
+      <!-- Show user profile section if authenticated -->
+      <div *ngIf="isAuthenticated" class="user-profile">
+        <span *ngIf="isAdmin" class="admin-badge">Admin</span>
+        <button class="btn-royal" (click)="logout()">Logout</button>
+      </div>
+    </nav>
+  </div>
+</header>

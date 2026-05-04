@@ -1,0 +1,169 @@
+<div class="reservations-container">
+  <div class="reservations-panel">
+    <div class="reservations-hero">
+      <h1>Book Your Experience</h1>
+      <p class="subtitle">Reserve a single bed, double bed room, table seating, or both with live availability preview and secure payment options.</p>
+    </div>
+
+    <section class="reservation-type-panel page-panel">
+      <h3>Reservation Options</h3>
+      <p>Choose a booking mode to preview available rooms and tables before signing in.</p>
+      <div class="type-options">
+        <label>
+          <input type="radio" name="reservationType" [(ngModel)]="reservation.reservationType" value="room">
+          Room Only
+        </label>
+        <label>
+          <input type="radio" name="reservationType" [(ngModel)]="reservation.reservationType" value="table">
+          Table Only
+        </label>
+        <label>
+          <input type="radio" name="reservationType" [(ngModel)]="reservation.reservationType" value="both">
+          Room + Table
+        </label>
+      </div>
+      <div class="pricing-details">
+        <div><strong>Room Rates:</strong> Single Bed ₹2,500 · Double Bed ₹4,200</div>
+        <div><strong>Table Rates per person:</strong> 2p ₹1,200 · 4p ₹1,100 · 6p ₹1,050 · 8p ₹950</div>
+      </div>
+    </section>
+
+    <div *ngIf="!isAuthenticated" class="login-prompt">
+      <p>Please sign in to make a reservation.</p>
+      <button class="btn-royal" (click)="openAuthModal()">Sign In / Sign Up</button>
+    </div>
+
+    <form *ngIf="isAuthenticated && !showPaymentStep" (ngSubmit)="onSubmit()" class="reservation-form">
+      <div class="form-group split-fields">
+        <div>
+          <label for="name">Full Name</label>
+          <input type="text" id="name" [(ngModel)]="reservation.name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" [(ngModel)]="reservation.email" name="email" required>
+        </div>
+      </div>
+
+      <div class="form-group split-fields">
+        <div>
+          <label for="date">Date</label>
+          <input type="date" id="date" [(ngModel)]="reservation.date" name="date" required>
+        </div>
+        <div>
+          <label for="time">Time</label>
+          <input type="time" id="time" [(ngModel)]="reservation.time" name="time" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="guests">Number of Guests</label>
+        <select id="guests" [(ngModel)]="reservation.guests" name="guests" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6+</option>
+        </select>
+      </div>
+
+      <div *ngIf="reservation.reservationType !== 'table'" class="form-group">
+        <label>Room Type</label>
+        <div class="type-options">
+          <label>
+            <input type="radio" name="roomType" [(ngModel)]="reservation.roomType" value="single">
+            Single Bed
+          </label>
+          <label>
+            <input type="radio" name="roomType" [(ngModel)]="reservation.roomType" value="double">
+            Double Bed
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="reservation.reservationType !== 'room'" class="form-group">
+        <label for="tableCapacity">Table For</label>
+        <select id="tableCapacity" [(ngModel)]="reservation.tableCapacity" name="tableCapacity" required>
+          <option value="2 persons">2 persons</option>
+          <option value="4 persons">4 persons</option>
+          <option value="6 persons">6 persons</option>
+          <option value="8 persons">8 persons</option>
+        </select>
+      </div>
+
+      <div *ngIf="reservation.reservationType !== 'room'" class="form-group">
+        <label for="table">Preferred Table</label>
+        <select id="table" [(ngModel)]="reservation.table" name="table" required>
+          <option value="">Select a Table</option>
+          <option value="Table 1">Table 1</option>
+          <option value="Table 2">Table 2</option>
+          <option value="Table 3">Table 3</option>
+          <option value="Table 4">Table 4</option>
+          <option value="Table 5">Table 5</option>
+          <option value="Table 6">Table 6</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Special Requests</label>
+        <textarea id="message" [(ngModel)]="reservation.message" name="message" rows="4" placeholder="Any special dietary requirements or notes..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Proceed to Payment</button>
+    </form>
+
+    <div *ngIf="showPaymentStep && !paymentComplete" class="payment-step page-panel">
+      <h3>Payment Confirmation</h3>
+      <p class="payment-summary">You are reserving <strong>{{ reservation.reservationType === 'both' ? 'Room + Table' : reservation.reservationType === 'room' ? 'Room Only' : 'Table Only' }}</strong>.</p>
+      <p class="payment-summary">Total estimated cost: <strong>{{ formatCurrency(paymentSummary.total) }}</strong></p>
+      <p class="payment-summary">Advance due now (30%): <strong>{{ formatCurrency(paymentSummary.advance) }}</strong></p>
+      <p class="payment-status">{{ paymentMessage || 'Ready to proceed with secure payment.' }}</p>
+      <button type="button" class="payment-btn" (click)="payWithRazorpay()" [disabled]="isProcessingPayment">Pay ₹{{ paymentSummary.advance }} with Razorpay</button>
+      <button type="button" class="cancel-btn" (click)="showPaymentStep = false" [disabled]="isProcessingPayment">Change Reservation</button>
+    </div>
+
+    <div *ngIf="paymentComplete" class="confirmation-overlay" (click)="closeConfirmation()">
+      <div class="confirmation-panel page-panel" (click)="$event.stopPropagation()">
+        <button type="button" class="close-btn" (click)="closeConfirmation()">✕</button>
+        <h3>Reservation Confirmed</h3>
+        <p class="payment-summary">Your payment of <strong>{{ formatCurrency(paymentSummary.advance) }}</strong> has been received.</p>
+        <p class="payment-summary">We have confirmed your reservation. A confirmation email will be sent shortly.</p>
+        <button type="button" class="submit-btn" (click)="resetReservation()">Book Another</button>
+      </div>
+    </div>
+
+    <div *ngIf="reservation.reservationType && !paymentComplete" class="availability-panel page-panel">
+      <h3>Available Options</h3>
+      <p class="availability-note">Choose your preferred room or table from the current hotel availability below.</p>
+
+      <div *ngIf="reservation.reservationType !== 'table'" class="availability-group">
+        <h4>Room Availability</h4>
+        <div class="availability-grid">
+          <article class="availability-card" *ngFor="let room of roomAvailability">
+            <h5>{{ room.name }}</h5>
+            <p>{{ room.description }}</p>
+            <span class="status {{ room.statusClass }}">{{ room.status }}</span>
+          </article>
+        </div>
+      </div>
+
+      <div *ngIf="reservation.reservationType !== 'room'" class="availability-group">
+        <h4>Table Availability</h4>
+        <div class="availability-grid">
+          <article class="availability-card" *ngFor="let table of tableAvailability">
+            <h5>{{ table.name }}</h5>
+            <p>{{ table.description }}</p>
+            <span class="status {{ table.statusClass }}">{{ table.status }}</span>
+          </article>
+        </div>
+      </div>
+
+      <div class="payment-panel">
+        <p>Ready to secure your reservation? Use Razorpay to confirm payment and lock the booking instantly.</p>
+        <button type="button" class="payment-btn" (click)="payWithRazorpay()" [disabled]="!isAuthenticated">Pay with Razorpay</button>
+      </div>
+      <p *ngIf="!isAuthenticated" class="signin-note">Sign in to complete payment and confirm your room/table booking.</p>
+    </div>
+  </div>
+</div>

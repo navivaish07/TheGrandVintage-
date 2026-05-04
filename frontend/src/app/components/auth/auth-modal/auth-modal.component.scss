@@ -1,0 +1,128 @@
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 7, 15, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 2rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 28px;
+  padding: 2.5rem;
+  background: rgba(15, 19, 34, 0.98);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.auth-heading {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-heading h2 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+.auth-heading span {
+  display: block;
+  font-size: 1.1rem;
+  letter-spacing: 0.16em;
+}
+
+.auth-heading p {
+  margin: 1rem auto 0;
+  max-width: 360px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
+
+.tabs button {
+  padding: 1rem 1.2rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tabs button.active {
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.auth-form form {
+  display: grid;
+  gap: 1rem;
+}
+
+.auth-form label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.06);
+}
+
+.btn-royal {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 24px;
+  border: none;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 1), rgba(163, 125, 56, 1));
+  color: #081118;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-royal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(212, 175, 55, 0.25);
+}
+
+.close-x {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+}

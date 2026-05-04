@@ -1,0 +1,98 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(8, 10, 18, 0.86);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+  backdrop-filter: blur(16px);
+  color: var(--text);
+  padding: 18px 0;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.site-header .brand span {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.site-header .brand .logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(212, 175, 55, 0.75);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.site-header nav {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-header nav a {
+  color: var(--text);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  padding: 10px 16px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+.site-header nav a:hover,
+.site-header nav a.active {
+  color: var(--bg-hero);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(212, 175, 55, 0.35));
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.18);
+}
+
+.site-header .btn-royal {
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  color: #111;
+  border: none;
+  padding: 0.78rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.site-header .btn-royal:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(212, 175, 55, 0.2);
+}
+
+.site-header .user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-header .admin-badge {
+  background: rgba(212, 175, 55, 0.16);
+  color: var(--gold);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

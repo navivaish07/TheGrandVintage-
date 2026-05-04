@@ -1,0 +1,251 @@
+<div class="admin-container">
+  <header class="admin-header">
+    <div>
+      <h1>Grand Vintage Owner</h1>
+      <a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Grand+Vintage+Hotel" target="_blank" rel="noopener noreferrer">
+        <span class="location-icon">📍</span>
+        View Hotel Location
+      </a>
+    </div>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </header>
+
+  <section class="dashboard-summary page-panel">
+    <div class="summary-copy">
+      <h2>Admin Control Center</h2>
+      <p>Manage bookings, menu updates, guest reviews, and real-time availability from one polished owner dashboard.</p>
+      <ul>
+        <li>Admin can manage bookings, add/remove food items, and track users/orders.</li>
+        <li>Review & rating system lets guests rate hotels and restaurants.</li>
+        <li>Advanced features include online payment integration and live availability tracking.</li>
+        <li>Prevent double bookings with smart availability workflows.</li>
+      </ul>
+    </div>
+    <div class="feature-cards">
+      <article class="feature-card">
+        <h3>Booking Control</h3>
+        <p>View and update reservations with a refined workflow to keep service seamless.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Menu Management</h3>
+        <p>Add, edit, and remove menu items instantly to keep your culinary offering fresh.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Guest Feedback</h3>
+        <p>Track reviews and ratings in one place so you can refine guest experiences faster.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Availability & Payments</h3>
+        <p>Monitor room/table availability and support payment gateways for premium booking flow.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="admin-content">
+    <section class="data-section">
+      <h2>Room Reservations</h2>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Guests</th>
+              <th>Room Type</th>
+              <th>Message</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let res of roomReservations">
+              <td>{{ res.name }}</td>
+              <td>{{ res.email }}</td>
+              <td>{{ res.date }}</td>
+              <td>{{ res.time }}</td>
+              <td>{{ res.guests }}</td>
+              <td>{{ res.roomType | titlecase }}</td>
+              <td>{{ res.message }}</td>
+              <td>
+                <button class="btn-edit" (click)="editReservation(res)">Edit</button>
+                <button class="btn-delete" (click)="deleteReservation(res._id || res.id || '')">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p *ngIf="roomReservations.length === 0" class="no-data">No room reservations yet.</p>
+      </div>
+    </section>
+
+    <section class="data-section">
+      <h2>Table Reservations</h2>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Guests</th>
+              <th>Table Capacity</th>
+              <th>Table Number</th>
+              <th>Message</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let res of tableReservations">
+              <td>{{ res.name }}</td>
+              <td>{{ res.email }}</td>
+              <td>{{ res.date }}</td>
+              <td>{{ res.time }}</td>
+              <td>{{ res.guests }}</td>
+              <td>{{ res.tableCapacity }}</td>
+              <td>{{ res.table }}</td>
+              <td>{{ res.message }}</td>
+              <td>
+                <button class="btn-edit" (click)="editReservation(res)">Edit</button>
+                <button class="btn-delete" (click)="deleteReservation(res._id || res.id || '')">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p *ngIf="tableReservations.length === 0" class="no-data">No table reservations yet.</p>
+      </div>
+    </section>
+
+    <section class="data-section">
+      <h2>User Contacts</h2>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contact of contacts">
+              <td>{{ contact.name }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.message }}</td>
+              <td>
+                <button class="btn-edit" (click)="editContact(contact)">Edit</button>
+                <button class="btn-delete" (click)="deleteContact(contact._id || contact.id || '')">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p *ngIf="contacts.length === 0" class="no-data">No contacts yet.</p>
+      </div>
+    </section>
+
+    <section class="data-section">
+      <h2>User Activities (Reviews)</h2>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Rating</th>
+              <th>Feedback</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let review of reviews">
+              <td>{{ review.name }}</td>
+              <td>{{ review.rating }}/5</td>
+              <td>{{ review.feedback }}</td>
+              <td>
+                <button class="btn-edit" (click)="editReview(review)">Edit</button>
+                <button class="btn-delete" (click)="deleteReview(review._id || review.id || '')">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p *ngIf="reviews.length === 0" class="no-data">No reviews yet.</p>
+      </div>
+    </section>
+
+    <section class="data-section">
+      <h2>Menu Management</h2>
+      <div class="menu-management">
+        <div class="menu-controls">
+          <button class="btn-add" (click)="openAddMenuModal()">Add Menu Item</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of menuItems">
+                <td>{{ item.category }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>${{ item.price }}</td>
+                <td>
+                  <button class="btn-edit" (click)="editMenuItem(item)">Edit</button>
+                  <button class="btn-delete" (click)="deleteMenuItem(item._id || item.id || '')">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p *ngIf="menuItems.length === 0" class="no-data">No menu items yet.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Edit Modal -->
+  <div *ngIf="showEditModal" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h3>Edit {{ editType }}</h3>
+      <form *ngIf="editType === 'reservation'" (ngSubmit)="saveEdit()">
+        <label>Name: <input type="text" [(ngModel)]="editingItem.name" name="name" required></label>
+        <label>Email: <input type="email" [(ngModel)]="editingItem.email" name="email" required></label>
+        <label>Date: <input type="date" [(ngModel)]="editingItem.date" name="date" required></label>
+        <label>Time: <input type="time" [(ngModel)]="editingItem.time" name="time" required></label>
+        <label>Guests: <input type="number" [(ngModel)]="editingItem.guests" name="guests" required></label>
+        <label>Table: <input type="text" [(ngModel)]="editingItem.table" name="table" required></label>
+        <label>Message: <textarea [(ngModel)]="editingItem.message" name="message"></textarea></label>
+        <button type="submit">Save</button>
+        <button type="button" (click)="closeModal()">Cancel</button>
+      </form>
+      <form *ngIf="editType === 'contact'" (ngSubmit)="saveEdit()">
+        <label>Name: <input type="text" [(ngModel)]="editingItem.name" name="name" required></label>
+        <label>Email: <input type="email" [(ngModel)]="editingItem.email" name="email" required></label>
+        <label>Message: <textarea [(ngModel)]="editingItem.message" name="message" required></textarea></label>
+        <button type="submit">Save</button>
+        <button type="button" (click)="closeModal()">Cancel</button>
+      </form>
+      <form *ngIf="editType === 'review'" (ngSubmit)="saveEdit()">
+        <label>Name: <input type="text" [(ngModel)]="editingItem.name" name="name" required></label>
+        <label>Rating: <input type="number" [(ngModel)]="editingItem.rating" name="rating" min="1" max="5" required></label>
+        <label>Feedback: <textarea [(ngModel)]="editingItem.feedback" name="feedback" required></textarea></label>
+        <button type="submit">Save</button>
+        <button type="button" (click)="closeModal()">Cancel</button>
+      </form>
+      <form *ngIf="editType === 'menu'" (ngSubmit)="saveEdit()">
+        <label>Category: <input type="text" [(ngModel)]="editingItem.category" name="category" required></label>
+        <label>Name: <input type="text" [(ngModel)]="editingItem.name" name="name" required></label>
+        <label>Description: <textarea [(ngModel)]="editingItem.description" name="description" required></textarea></label>
+        <label>Price: <input type="number" [(ngModel)]="editingItem.price" name="price" step="0.01" min="0" required></label>
+        <label>Image URL: <input type="text" [(ngModel)]="editingItem.image" name="image" placeholder="e.g., assets/images/food.jpg" required></label>
+        <button type="submit">Save</button>
+        <button type="button" (click)="closeModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
